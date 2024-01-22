@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Controle financeiro</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Controle financeiro</h2>
+
+<button onclick="adicionarLinha()">Adicionar Linha</button>
+<button onclick="removerLinha()">Remover Linha</button>
+<button onclick="adicionarColuna()">Adicionar Coluna</button>
+<button onclick="removerColuna()">Remover Coluna</button>
+<table id="tabelaExcel">
+    <tr>
+        <th>Coluna 1</th>
+        <!-- As colunas serão adicionadas ou removidas dinamicamente -->
+    </tr>
+    <!-- As linhas serão adicionadas ou removidas dinamicamente -->
+</table>
+
+<script>
+// JavaScript para manipular a tabela será inserido aqui
+function adicionarLinha() {
+    var tabela = document.getElementById("tabelaExcel");
+    var novaLinha = tabela.insertRow(-1);
+    for (let i = 0; i < tabela.rows[0].cells.length; i++) {
+        novaLinha.insertCell(i).innerHTML = `Linha ${tabela.rows.length} Coluna ${i + 1}`;
+    }
+}
+
+function removerLinha() {
+    var tabela = document.getElementById("tabelaExcel");
+    if (tabela.rows.length > 1) {
+        tabela.deleteRow(-1);
+    }
+}
+
+function adicionarColuna() {
+    var tabela = document.getElementById("tabelaExcel");
+    for (let i = 0; i < tabela.rows.length; i++) {
+        var novaCelula = tabela.rows[i].insertCell(-1);
+        novaCelula.innerHTML = `Linha ${i + 1} Coluna ${tabela.rows[i].cells.length}`;
+    }
+}
+
+function removerColuna() {
+    var tabela = document.getElementById("tabelaExcel");
+    if (tabela.rows[0].cells.length > 1) {
+        for (let i = 0; i < tabela.rows.length; i++) {
+            tabela.rows[i].deleteCell(-1);
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
